@@ -1,11 +1,21 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const cors = require('cors');
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
+// Constants
+const app = express();
+const port = 3000;
+
+// Middleware
+app.use(cors());
+
+// Routes
+app.get('/', (req, res, next) => {
+    res.send('Hello Wash!')
+})
+app.post('/contact', (req, res) => {
+    res.send('Got a POST request');
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Listening on port ${port}...`)
 })
