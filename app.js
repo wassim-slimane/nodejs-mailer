@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require("body-parser");
+const {sendEmail} = require("./mailer");
 
 // Constants
 const app = express();
@@ -16,7 +17,14 @@ app.get('/', (req, res, next) => {
     res.send('Hello Wash!')
 })
 app.post('/contact', (req, res) => {
-    console.log(req.body)
+    const form = req.body;
+
+    // To-Do: Check form data to handle errors and send it to the front
+
+    sendEmail(form).then((result) => res.send(result)).catch((err) => {
+        console.log('err:', err);
+        res.status(400).send(err.message);
+    });
 })
 
 app.listen(port, () => {

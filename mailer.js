@@ -12,27 +12,29 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-// Configure the mailoptions object
-const mailOptions = {
-    from: 'washimmer@gmail.com',
-    to: 'thiampapemoussajr@gmail.com',
-    subject: 'Wagwan bruv',
-    text: 'Quick message to tell you that Im currently working on the email feature and the first try works !!! Imma keep you in touch of my progress, aight'
-};
+async function sendEmail(form) {
+    const name = form.name.toString().toLowerCase().replace(/\s/g, '');
+    const mailOptions = {
+        from: process.env.EMAIL_ADRESSE,
+        to: process.env.EMAIL_ADRESSE,
+        subject: form.subject,
+        text: `${form.name} - ${form.email}: ${form.message}`,
+    };
 
-async function sendMail() {
-    const response = await transporter.sendMail(mailOptions);
-    response.accepted ? console.log(response.accepted) : console.log(response.rejected);
+    return await transporter.sendMail(mailOptions);
 }
 
 // Verify smtp connection
-transporter.verify(function(error, success) {
-    if (error) {
-        console.log('Connection error:' + error);
-    } else {
-        console.log('Successfully verified, Ready to send email');
-        // Send the email
-        sendMail().catch((error) => console.log(error));
-    }
-});
+function checkConnection() {
+    transporter.verify(function(error, success) {
+        if (error) {
+            console.log('Connection error:' + error);
+        } else {
+            // Send the email
+            //sendEmail().catch((error) => console.log(error));
+        }
+    })
+}
+
+module.exports = {sendEmail, checkConnection};
 
