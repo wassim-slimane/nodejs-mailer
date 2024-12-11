@@ -7,8 +7,8 @@ async function sendEmail(form) {
     const mailOptions = {
         from: process.env.EMAIL_FROM,
         to: process.env.EMAIL_TO,
-        subject: form.subject,
-        text: `${form.name} - ${form.email}: ${form.message}`,
+        subject: 'EMAIL FROM PORTFOLIO',
+        text: `Subject: ${form.subject}, Name: ${name}, Email: ${form.email}, Message: ${form.message}`,
     };
 
     return await transporter.sendMail(mailOptions);
