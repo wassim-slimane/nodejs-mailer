@@ -1,5 +1,4 @@
 require("dotenv").config()
-const nodemailer = require('nodemailer');
 const {transporter} = require('./transporter');
 
 async function sendEmail(form) {
