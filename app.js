@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require("body-parser");
 const {sendEmail} = require("./mailer");
+const {checkConnection} = require("./checkConnection");
 
 // Constants
 const app = express();
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 
 // Routes
 app.get('/', (req, res, next) => {
+    checkConnection();
     res.send('Hello Wash!')
 })
 app.post('/contact', (req, res) => {
