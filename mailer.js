@@ -15,8 +15,8 @@ const transporter = nodemailer.createTransport({
 async function sendEmail(form) {
     const name = form.name.toString().toLowerCase().replace(/\s/g, '');
     const mailOptions = {
-        from: process.env.EMAIL_ADRESSE,
-        to: process.env.EMAIL_ADRESSE,
+        from: process.env.EMAIL_FROM,
+        to: process.env.EMAIL_TO,
         subject: form.subject,
         text: `${form.name} - ${form.email}: ${form.message}`,
     };
@@ -24,17 +24,5 @@ async function sendEmail(form) {
     return await transporter.sendMail(mailOptions);
 }
 
-// Verify smtp connection
-function checkConnection() {
-    transporter.verify(function(error, success) {
-        if (error) {
-            console.log('Connection error:' + error);
-        } else {
-            // Send the email
-            //sendEmail().catch((error) => console.log(error));
-        }
-    })
-}
-
-module.exports = {sendEmail, checkConnection};
+module.exports = {sendEmail};
 
