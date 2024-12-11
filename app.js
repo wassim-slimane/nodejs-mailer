@@ -15,9 +15,14 @@ app.use(bodyParser.json());
 
 // Routes
 app.get('/', (req, res, next) => {
-    checkConnection();
-    res.send('Hello Wash!')
+    res.send('Hello Wash!');
 })
+
+app.post('/check-connection', (req, res) => {
+    checkConnection();
+    res.status(200).send('OK');
+})
+
 app.post('/contact', (req, res) => {
     const form = req.body;
 
