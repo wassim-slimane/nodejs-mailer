@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require("body-parser");
 const {sendEmail} = require("./mailer");
 const {checkConnection} = require("./checkConnection");
+const {sanitizeForm} = require("./lib/formUtils");
 
 // Constants
 const app = express();
@@ -25,10 +26,9 @@ app.post('/check-connection', (req, res) => {
 
 app.post('/contact', (req, res) => {
     const form = req.body;
+    const sanitizedForm = sanitizeForm(form);
 
-    // To-Do: Check form data to handle errors and send it to the front
-
-    sendEmail(form).then((result) => res.send(result)).catch((err) => {
+    sendEmail(sanitizedForm).then((result) => res.send(result)).catch((err) => {
         console.log('err:', err);
         res.status(400).send(err.message);
     });
