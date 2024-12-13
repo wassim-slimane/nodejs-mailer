@@ -28,9 +28,10 @@ app.post('/contact', (req, res) => {
     const form = req.body;
     const sanitizedForm = sanitizeForm(form);
 
-    sendEmail(sanitizedForm).then((result) => res.send(result)).catch((err) => {
-        console.log('err:', err);
-        res.status(400).send(err.message);
+    sendEmail(sanitizedForm).then((result) => {
+        res.status(200).send(result);
+    }).catch((err) => {
+        res.status(401).send(err.message);
     });
 })
 
