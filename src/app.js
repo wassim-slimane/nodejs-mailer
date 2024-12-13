@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.urlencoded());
 app.use(express.json());
 
-app.use('/check-connection', (req, res, next) => {
+app.use('/api/check-connection', (req, res, next) => {
     checkConnection().then(() => res.status(200).send('Connection Checked')).catch(next);
 })
 
