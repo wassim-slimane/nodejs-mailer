@@ -1,7 +1,7 @@
 {
   "type": "commonjs",
   "scripts": {
-    "dev": "node --watch app.js ",
+    "dev": "node --watch ./src/app.js ",
     "test": "jest"
   },
   "dependencies": {
