@@ -13,14 +13,13 @@ app.use(cors());
 app.use(express.urlencoded());
 app.use(express.json());
 
+app.use('/check-connection', (req, res, next) => {
+    checkConnection().then(() => res.status(200).send('Connection Checked')).catch(next);
+})
+
 // Routes
 app.get('/', (req, res, next) => {
     res.send('Hello Wash!');
-})
-
-app.post('/check-connection', (req, res) => {
-    checkConnection();
-    res.status(200).send('OK');
 })
 
 app.post('/contact', (req, res, next) => {
