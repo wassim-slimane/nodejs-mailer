@@ -5,25 +5,18 @@ const handlebars = require('handlebars');
 const {transporter} = require('./transporter');
 
 async function sendEmail(form) {
-    // Data for the template
-    const context = {
-        subject: form.subject,
-        name: form.name,
-        email: form.email,
-        message: form.message,
-    };
 
     // Generate html template to send with data
     const htmlSource = fs.readFileSync('./mail-templates/contact-form.html', 'utf-8');
     const htmlTemplate = handlebars.compile(htmlSource);
-    const htmlToSend = htmlTemplate(context);
+    const htmlToSend = htmlTemplate(form);
 
     // Set mail options
     const mailOptions = {
         from: process.env.EMAIL_FROM,
         to: process.env.EMAIL_TO,
         subject: 'EMAIL FROM PORTFOLIO',
-        text: `Subject: ${form.subject}, Name: ${name}, Email: ${form.email}, Message: ${form.message}`,
+        text: `Subject: ${form.subject}, Name: ${form.name}, Email: ${form.email}, Message: ${form.message}`,
         html: htmlToSend
     };
 
