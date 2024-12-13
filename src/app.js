@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.use('/api/check-connection', (req, res, next) => {
     checkConnection().then(() => res.status(200).send('Connection Checked')).catch(next);
-})
+});
 
 // Routes
 app.post('/api/contact', (req, res, next) => {
@@ -27,8 +27,12 @@ app.post('/api/contact', (req, res, next) => {
     }).catch((err) => {
         res.status(400).send(err.message);
     });
-})
+});
+
+app.use((req, res, next) => {
+    res.status(404).send('Not Found');
+});
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}...`)
-})
+});
