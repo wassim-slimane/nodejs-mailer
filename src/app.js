@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require("body-parser");
 const {sendEmail} = require("./mailer");
 const {checkConnection} = require("./checkConnection");
 const {sanitizeForm} = require("../lib/formUtils");
@@ -11,8 +10,8 @@ const port = 3000;
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.urlencoded());
-app.use(bodyParser.json());
+app.use(express.urlencoded());
+app.use(express.json());
 
 // Routes
 app.get('/', (req, res, next) => {
@@ -24,7 +23,7 @@ app.post('/check-connection', (req, res) => {
     res.status(200).send('OK');
 })
 
-app.post('/contact', (req, res) => {
+app.post('/contact', (req, res, next) => {
     const form = req.body;
     const sanitizedForm = sanitizeForm(form);
 
