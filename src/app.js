@@ -18,11 +18,7 @@ app.use('/check-connection', (req, res, next) => {
 })
 
 // Routes
-app.get('/', (req, res, next) => {
-    res.send('Hello Wash!');
-})
-
-app.post('/contact', (req, res, next) => {
+app.post('/api/contact', (req, res, next) => {
     const form = req.body;
     const sanitizedForm = sanitizeForm(form);
 
