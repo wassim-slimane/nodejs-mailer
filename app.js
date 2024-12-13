@@ -31,7 +31,7 @@ app.post('/contact', (req, res) => {
     sendEmail(sanitizedForm).then((result) => {
         res.status(200).send(result);
     }).catch((err) => {
-        res.status(401).send(err.message);
+        res.status(400).send(err.message);
     });
 })
 
