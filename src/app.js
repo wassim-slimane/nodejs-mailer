@@ -3,7 +3,7 @@ const cors = require('cors');
 const bodyParser = require("body-parser");
 const {sendEmail} = require("./mailer");
 const {checkConnection} = require("./checkConnection");
-const {sanitizeForm} = require("./lib/formUtils");
+const {sanitizeForm} = require("../lib/formUtils");
 
 // Constants
 const app = express();

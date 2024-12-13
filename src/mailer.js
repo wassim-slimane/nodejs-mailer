@@ -14,7 +14,7 @@ async function sendEmail(form) {
     };
 
     // Generate html template to send with data
-    const htmlSource = fs.readFileSync('./template.html', 'utf-8');
+    const htmlSource = fs.readFileSync('./contact-form.html', 'utf-8');
     const htmlTemplate = handlebars.compile(htmlSource);
     const htmlToSend = htmlTemplate(context);
 
