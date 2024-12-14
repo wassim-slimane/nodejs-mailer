@@ -52,3 +52,12 @@ Follow these instructions to get the project running locally.
    npm start
    
 2. By default, the app will run on http://localhost:3000.
+
+### Running the application with Docker
+1. Build Dockerfile
+   ```bash
+   docker build .
+
+2. Run build
+   ```bash
+   docker run --env-file .env -p 3000:3000 my-mailer-app
