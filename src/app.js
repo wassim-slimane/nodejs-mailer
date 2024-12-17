@@ -6,7 +6,6 @@ const {sanitizeForm} = require("../lib/formUtils");
 
 // Constants
 const app = express();
-const port = 3000;
 
 // Middleware
 app.use(cors());
@@ -35,6 +34,6 @@ app.use((req, res, next) => {
     res.status(404).send('Not Found');
 });
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}...`);
+app.listen(3000, () => {
+    console.log(`Listening...`);
 });

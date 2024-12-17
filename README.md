@@ -34,29 +34,29 @@ Follow these instructions to get the project running locally.
 2. Install dependencies:
     ```bash
    npm install
-   
+
 3. Create a .env file in the root directory and configure the following variables:
-   ```plaintext 
+   ```plaintext
    EMAIL_HOST=smtp.gmail.com
    EMAIL_PORT=587
    EMAIL_SECURE=false
    EMAIL_USER=your-email@gmail.com
    EMAIL_PASS=your-email-password
-   
+
     Replace the placeholders with your actual email configuration. For Gmail, use an App Password for EMAIL_PASS.
-   
+
 ### Running the application
 
 1. Start server
     ```bash
    npm start
-   
+
 2. By default, the app will run on http://localhost:3000.
 
 ### Running the application with Docker
 1. Build Dockerfile
    ```bash
-   docker build .
+   docker build -t host/my-mailer-app .
 
 2. Run build
    ```bash
