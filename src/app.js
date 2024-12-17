@@ -6,12 +6,13 @@ const {sanitizeForm} = require("../lib/formUtils");
 
 // Constants
 const app = express();
-const port = 3000;
 
 // Middleware
 app.use(cors());
 app.use(express.urlencoded());
 app.use(express.json());
+
+app.get('/', (req, res) => res.send('Mailer App Running!'));
 
 app.use('/api/check-connection', (req, res, next) => {
     checkConnection().then(() => res.status(200).send('Connection Checked')).catch(next);
@@ -33,6 +34,6 @@ app.use((req, res, next) => {
     res.status(404).send('Not Found');
 });
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}...`);
+app.listen(3000, () => {
+    console.log(`Listening...`);
 });
